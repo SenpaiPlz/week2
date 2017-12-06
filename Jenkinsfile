@@ -5,11 +5,7 @@ node {
         echo 'Building..'
         def node = tool name: 'Node', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
         env.PATH = "${node}/bin:${env.PATH}"
-        sh 'npm install'
-        dir('./client'){
-            sh 'npm install'
-        }
-        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials')
+        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials'){}
         sh './dockerbuild.sh'
     }
     stage('Test') {
