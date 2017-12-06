@@ -10,6 +10,7 @@ node {
             sh 'npm install'
         }
         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials'){
+            docker login
             sh './dockerbuild.sh'
         }
     }
