@@ -7,7 +7,7 @@ node {
         env.PATH = "${node}/bin:${env.PATH}" 
         sh './dockerbuild.sh'
         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials'){
-            docker.push("senpaiplz/hashtagcoolrepo:${scmVars.GIT_COMMIT})
+            docker.push("senpaiplz/hashtagcoolrepo:${scmVars.GIT_COMMIT}")
         }
     }
     stage('Test') {
