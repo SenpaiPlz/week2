@@ -9,10 +9,8 @@ node {
         dir('./client'){
             sh 'npm install'
         }
-        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials'){
-            docker login
-            sh './dockerbuild.sh'
-        }
+        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials')
+        sh './dockerbuild.sh'
     }
     stage('Test') {
         echo 'Testing..'
