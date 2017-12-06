@@ -2,7 +2,7 @@ node {
     checkout scm
     stage('Build') {
         echo 'Building..'
-        sh 'npm run test'
+        sh './dockerbuild.sh'
     }
     stage('Test') {
         echo 'Testing..'
