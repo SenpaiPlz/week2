@@ -3,11 +3,9 @@ node {
     checkout scm
     stage('Build') {
         echo 'Building..'
-        sh 'npm install'
-        dir('./client'){
-            sh 'npm install'
-        }
-        sh './dockerbuild.sh'
+        def node = tool name: 'Node-7.4.0', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
+        env.PATH = "${node}/bin:${env.PATH}"
+        'sh npm -v'
     }
     stage('Test') {
         echo 'Testing..'
