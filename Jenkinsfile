@@ -2,7 +2,6 @@ node {
     checkout scm
     stage('Build') {
         echo 'Building..'
-        sh 'yarn install'
         sh 'npm run test'
     }
     stage('Test') {
