@@ -5,9 +5,11 @@ node {
         echo 'Building..'
         def node = tool name: 'Node', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
         env.PATH = "${node}/bin:${env.PATH}"
-        sh 'npm -v'
         sh 'npm install'
-        sh 'npm run test'
+        dir('./client'){
+            sh 'npm install'
+        }
+        sh './dockerbuild.sh'
     }
     stage('Test') {
         echo 'Testing..'
