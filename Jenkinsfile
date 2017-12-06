@@ -1,6 +1,6 @@
 node {    
 
-    checkout scm
+    def scmVars = checkout scm
     stage('Build') {
         echo 'Building..'
         def node = tool name: 'Node', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
@@ -9,7 +9,10 @@ node {
         dir('./client'){
             sh 'npm install'
         }
-        sh './dockerbuild.sh'
+        app = docker.build("senpaiplz/hashtagcoolrepo")
+        docker.withRegistry('https://registry.hub.docker.com', 'docker-dub-credentials'){
+            app.push("${scmVars.GIT_COMMIT})
+        }
     }
     stage('Test') {
         echo 'Testing..'
