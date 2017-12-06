@@ -42,15 +42,4 @@ _EOF_
 cp ./package.json ./build/
 cp ./Dockerfile ./build/
 
-cd build
-
-echo Building docker image
-docker build -t senpaiplz/hashtagcoolrepo:$GIT_COMMIT .
-
-rc=$?
-if [[ $rc != 0 ]] ; then
-    echo "Docker build failed " $rc
-    exit $rc
-fi
-
 echo "Done"
