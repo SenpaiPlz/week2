@@ -4,7 +4,7 @@ node {
     stage('Build') {
         echo 'Building..'
         sh 'npm install'
-        dir(./client){
+        dir('./client'){
             sh 'npm install'
         }
         sh './dockerbuild.sh'
