@@ -10,7 +10,7 @@ node {
         {
             app = docker.build("senpaiplz/hashtagcoolrepo")
             docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials'){
-                app.push("${GIT_COMMIT}")
+                app.push("${scmVars.GIT_COMMIT}")
             }
         }
     }
