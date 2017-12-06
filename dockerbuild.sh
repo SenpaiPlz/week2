@@ -45,20 +45,12 @@ cp ./Dockerfile ./build/
 cd build
 
 echo Building docker image
-
 docker build -t senpaiplz/hashtagcoolrepo:$GIT_COMMIT .
 
 rc=$?
 if [[ $rc != 0 ]] ; then
     echo "Docker build failed " $rc
     exit $rc
-fi
-
-docker push senpaiplz/hashtagcoolrepo:$GIT_COMMIT
-rc=$?
-if [[ $rc != 0 ]] ; then
-   echo "Docker push failed " $rc
-   exit $rc
 fi
 
 echo "Done"
