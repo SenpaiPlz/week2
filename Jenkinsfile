@@ -9,9 +9,8 @@ node {
         dir('./client'){
             sh 'npm install'
         }
-        app = docker.build("senpaiplz/hashtagcoolrepo")
         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials'){
-            app.push("${scmVars.GIT_COMMIT}")
+            sh './dockerbuild.sh'
         }
     }
     stage('Test') {
