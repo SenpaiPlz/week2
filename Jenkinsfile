@@ -5,7 +5,7 @@ node {
         echo 'Building..'
         def node = tool name: 'Node', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
         env.PATH = "${node}/bin:${env.PATH}"
-        sh 'npm run startpostgres && sleep 10 && npm run mifratedb'
+        sh 'npm run startpostgres && sleep 10 && npm run migratedb'
         sh './dockerbuild.sh'
         dir('./build/')
         {
