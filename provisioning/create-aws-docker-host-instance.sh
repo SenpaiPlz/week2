@@ -2,12 +2,12 @@
 set -e
 
 echo "Check for instance information..."
-INSTANCE_DIR="ec2_instance"
+INSTANCE_DIR="~/ec2_instance"
 
 export AMI_IMAGE_ID="ami-1a962263"
 
 echo No instance information present, continuing.
-[ -d "~/${INSTANCE_DIR}" ] || mkdir ~/${INSTANCE_DIR}
+[ -d "${INSTANCE_DIR}" ] || mkdir ${INSTANCE_DIR}
 
 USERNAME=$(aws iam get-user --query 'User.UserName' --output text)
 
@@ -20,8 +20,8 @@ if [ ! -e ~/ec2_instance/security-group-name.txt ]; then
 fi
 
 if [ ! -e ${INSTANCE_DIR}/${SECURITY_GROUP_NAME}.pem ]; then
-    aws ec2 create-key-pair --key-name ${SECURITY_GROUP_NAME} --query 'KeyMaterial' --output text > ~/${INSTANCE_DIR}/${SECURITY_GROUP_NAME}.pem
-    chmod 400 ~/${INSTANCE_DIR}/${SECURITY_GROUP_NAME}.pem
+    aws ec2 create-key-pair --key-name ${SECURITY_GROUP_NAME} --query 'KeyMaterial' --output text > ${INSTANCE_DIR}/${SECURITY_GROUP_NAME}.pem
+    chmod 400 ${INSTANCE_DIR}/${SECURITY_GROUP_NAME}.pem
 fi
 
 if [ ! -e ./ec2_instance/security-group-id.txt ]; then
