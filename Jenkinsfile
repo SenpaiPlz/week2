@@ -5,14 +5,9 @@ node {
         echo 'Building..'
         def node = tool name: 'Node', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
         env.PATH = "${node}/bin:${env.PATH}"
-        sh 'npm run startpostgres && sleep 10 && npm run migratedb'
-        sh './dockerbuild.sh'
-        dir('./build/')
-        {
-            app = docker.build("senpaiplz/hashtagcoolrepo")
-            docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials'){
-                app.push("${scmVars.GIT_COMMIT}")
-            }
+        sh 'npm build'
+        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials'){
+            push("senpaiplz:hashtagcoolrepo:${scmVars.GIT_COMMIT}")
         }
     }
     stage('Test') {
