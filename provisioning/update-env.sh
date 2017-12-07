@@ -18,9 +18,9 @@ echo SCP
 status='unknown'
 while [ ! "${status}" == "ok" ]
 do
-   echo Checking status of host, currently ${status}
-   status=$(ssh -i "~/ec2_instance/${SECURITY_GROUP_NAME}.pem"  -o StrictHostKeyChecking=no -o BatchMode=yes -o ConnectTimeout=10 ec2-user@${INSTANCE_PUBLIC_NAME} echo ok 2>&1)
-   echo ${status}
+    echo Checking status of host, currently ${status}
+    status=$(ssh -i "~/ec2_instance/${SECURITY_GROUP_NAME}.pem"  -o StrictHostKeyChecking=no -o BatchMode=yes -o ConnectTimeout=10 ec2-user@${INSTANCE_PUBLIC_NAME} echo ok 2>&1)
+    echo ${status}
     sleep 10
 done
 
