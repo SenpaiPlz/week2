@@ -1,5 +1,4 @@
 node {    
-
     def scmVars = checkout scm
     stage('Build') {
         echo 'Building..'
