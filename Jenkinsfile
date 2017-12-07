@@ -5,6 +5,7 @@ node {
         echo 'Building..'
         def node = tool name: 'Node', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
         env.PATH = "${node}/bin:${env.PATH}"
+        sh './dockerbuild.sh'
         dir('./build') {
             app = docker.build("senpaiplz/hashtagcoolrepo:${scmVars.GIT_COMMIT}")
             docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials'){
