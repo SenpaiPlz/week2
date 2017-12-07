@@ -20,7 +20,7 @@ node {
         echo 'Deploying....'
         dir('./provisioning')
         {
-            sh './provision-new-environment.sh ${scmVars.GIT_COMMIT}'
+            sh "./provision-new-environment.sh ${scmVars.GIT_COMMIT}"
         }
     }
 }
