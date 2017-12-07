@@ -5,9 +5,9 @@ services:
       - 'POSTGRES_HOST=postgres'
       - 'POSTGRES_PORT=5432'
       - 'PORT=8080'
-    image: 'gulli/tictactoe:${GIT_COMMIT}'
+    image: 'senpaiplz/hashtagcoolrepo:55a460e5c995cd9b185b85f8dfe19925ba01e746'
     ports:
-      - '8080:8080'
+      - '80:8080'
     links:
       - 'postgres'
   postgres:

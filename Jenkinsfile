@@ -15,5 +15,9 @@ node {
     }
     stage('Deploy') {
         echo 'Deploying....'
+        dir('./provisioning')
+        {
+            sh 'aws configure set default.region eu-west-1 && ./provision-new-environment.sh'
+        }
     }
 }

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-
+export GIT_COMMIT=$1
 if [ -z "$GIT_COMMIT" ];
 then
     export GIT_COMMIT='da2f19126787dd312a33f3178f397f5e2b6f55e1'
