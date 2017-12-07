@@ -15,6 +15,7 @@ node {
     }
     stage('Test') {
         echo 'Testing..'
+        sh 'npm run testnowatch'
     }
     stage('Deploy') {
         echo 'Deploying....'
