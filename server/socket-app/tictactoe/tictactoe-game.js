@@ -11,7 +11,22 @@ module.exports = function(injected){
                 function applyEvents(events, moreEvents){
                     gameState.processEvents(events);
 
-                    // Check here for game state that may result in additional events
+                    if(gameState.isVictory())
+                    {
+                        events.push({
+                                        type: "GameWon",
+                                        user: cmd.user
+                                     });
+                    }
+                    
+                    if(gameState.isDraw())
+                    {
+                        events.push({
+                                        type: "GameDraw",
+                                        user: cmd.user
+                                    });
+                    }
+                    
                     eventHandler(events);
                 }
 
@@ -58,11 +73,42 @@ module.exports = function(injected){
                         }]);
                     },
                     "PlaceMove": function(cmd){
+                        if(gameState.nextSide() !== cmd.side)
+                        {
+                            applyEvents([{
+                                gameId: cmd.gameId,
+                                type: "NotYourMove",
+                                user: cmd.user,
+                                name: cmd.name,
+                                timeStamp: cmd.timeStamp,
+                            }]);
+                            return;
 
+                        }
 
-                        // Check here for conditions which prevent command from altering state
-
-
+                        if(!gameState.sqrIsEmpty(cmd.x, cmd.y))
+                        {
+                            applyEvents([{
+                                gameId: cmd.gameId,
+                                type: "IllegalMove",
+                                user: cmd.user,
+                                name: cmd.name,
+                                timeStamp: cmd.timeStamp,
+                            }]);
+                            return;    
+                        }
+                            
+                        // if everything checks out
+                        applyEvents([{
+                            gameId: cmd.gameId,
+                            type: "MovePlaced",
+                            user: cmd.user,
+                            name: cmd.name,
+                            timeStamp: cmd.timeStamp,
+                            side: cmd.side,
+                            x: cmd.x,
+                            y: cmd.y
+                        }]);
 
                     },
                     "RequestGameHistory": function(cmd){
