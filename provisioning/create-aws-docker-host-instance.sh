@@ -19,12 +19,12 @@ if [ ! -e ~/ec2_instance/security-group-name.txt ]; then
     echo ${SECURITY_GROUP_NAME} > ~/ec2_instance/security-group-name.txt
 fi
 
-if [ ! -e ${INSTANCE_DIR}/${SECURITY_GROUP_NAME}.pem ]; then
+if [ ! -e ~/${INSTANCE_DIR}/${SECURITY_GROUP_NAME}.pem ]; then
     aws ec2 create-key-pair --key-name ${SECURITY_GROUP_NAME} --query 'KeyMaterial' --output text > ~/${INSTANCE_DIR}/${SECURITY_GROUP_NAME}.pem
     chmod 400 ${INSTANCE_DIR}/${SECURITY_GROUP_NAME}.pem
 fi
 
-if [ ! -e ./ec2_instance/security-group-id.txt ]; then
+if [ ! -e ~/ec2_instance/security-group-id.txt ]; then
     SECURITY_GROUP_ID=$(aws ec2 create-security-group --group-name ${SECURITY_GROUP_NAME} --description "security group for dev environment in EC2" --query "GroupId"  --output=text)
     echo ${SECURITY_GROUP_ID} > ~/ec2_instance/security-group-id.txt
     echo Created security group ${SECURITY_GROUP_NAME} with ID ${SECURITY_GROUP_ID}
