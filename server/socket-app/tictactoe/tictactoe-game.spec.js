@@ -482,6 +482,121 @@ fdescribe('Move command', function () {
             }
         ];
     });
+    
+    it('should emit GameWon if won on final move', function () {
+        given = given.concat([{
+                    type: "MovePlaced",
+                    user: {
+                        userName: "TheGuy"
+                    },
+                    name: "TheFirstGame",
+                    timeStamp: "2014-12-02T11:29:29",
+                    side: 'X',
+                    x: 0,
+                    y: 0
+                    },{
+                    type: "MovePlaced",
+                    user: {
+                        userName: "Gummi"
+                    },
+                    name: "TheFirstGame",
+                    timeStamp: "2014-12-02T11:29:29",
+                    side: 'O',
+                    x: 0,
+                    y: 1
+                    },{
+                    type: "MovePlaced",
+                    user: {
+                        userName: "TheGuy"
+                    },
+                    name: "TheFirstGame",
+                    timeStamp: "2014-12-02T11:29:29",
+                    side: 'X',
+                    x: 0,
+                    y: 2
+                    },{
+                    type: "MovePlaced",
+                    user: {
+                        userName: "Gummi"
+                    },
+                    name: "TheFirstGame",
+                    timeStamp: "2014-12-02T11:29:29",
+                    side: 'O',
+                    x: 1,
+                    y: 0
+                    },{
+                    type: "MovePlaced",
+                    user: {
+                        userName: "TheGuy"
+                    },
+                    name: "TheFirstGame",
+                    timeStamp: "2014-12-02T11:29:29",
+                    side: 'X',
+                    x: 1,
+                    y: 1
+                    },{
+                    type: "MovePlaced",
+                    user: {
+                        userName: "Gummi"
+                    },
+                    name: "TheFirstGame",
+                    timeStamp: "2014-12-02T11:29:29",
+                    side: 'O',
+                    x: 2,
+                    y: 0
+                    },{
+                    type: "MovePlaced",
+                    user: {
+                        userName: "TheGuy"
+                    },
+                    name: "TheFirstGame",
+                    timeStamp: "2014-12-02T11:29:29",
+                    side: 'X',
+                    x: 2,
+                    y: 1
+                    },{
+                    type: "MovePlaced",
+                    user: {
+                        userName: "Gummi"
+                    },
+                    name: "TheFirstGame",
+                    timeStamp: "2014-12-02T11:29:29",
+                    side: 'O',
+                    x: 1,
+                    y: 2
+                    }
+                ]);
+        when = {
+                type: "PlaceMove",
+                user: {
+                    userName: "TheGuy"
+                },
+                name: "TheFirstGame",
+                timeStamp: "2014-12-02T11:29:29",
+                side: 'X',
+                x: 2,
+                y: 2
+            };
+        then = [
+            {
+                type: "MovePlaced",
+                user: {
+                    userName: "TheGuy"
+                },
+                name: "TheFirstGame",
+                timeStamp: "2014-12-02T11:29:29",
+                side: 'X',
+                x: 2,
+                y: 2
+            },
+            {
+                type: "GameWon",
+                user: {
+                    userName: "TheGuy"
+                }
+            }
+        ];
+    });
 
 });
 
