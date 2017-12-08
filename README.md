@@ -26,4 +26,14 @@ Jenkins login info:
 - user: hgop
 - pass: see handin comment
 
-see jenkns.md for more details about jenkins setup etc.
+see jenkns.md for more details about jenkins setup etc
+
+## Changes made to the provisioning scripts
+Most changes made the provisioning scripts are simple changes to where we store the instance data.
+I however made a few changes to the ./dockerbuild.sh script aswell, I will now give an outline of changes made that were not changes to datastorage.
+
+### The ./dockerbuild.sh
+The dockerbuild.sh was previously used to setup the ./build dir, and then use docker to build and push the image. In my version it only setups the ./build dir, the building and pushing of the image is done by the jenkins pipeline. See the Jenkinsfile for implementation details.
+
+### The /provision-new-environment.sh
+The only change made to the script was the inclusion of being able to set the GIT\_COMMIT via an argument.
