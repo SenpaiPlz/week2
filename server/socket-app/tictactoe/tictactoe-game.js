@@ -22,8 +22,7 @@ module.exports = function(injected){
                     if(gameState.isDraw())
                     {
                         events.push({
-                                        type: "GameDraw",
-                                        user: cmd.user
+                                        type: "GameDraw"
                                     });
                     }
                     

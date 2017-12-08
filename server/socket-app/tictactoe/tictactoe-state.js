@@ -84,7 +84,7 @@ module.exports = function (injected) {
         }
 
         function check_draw(){
-            draw = (gameState.moveCount === 9) && !gameState.victory
+            gameState.draw = (gameState.moveCount === 9) && !gameState.victory
         }
 
         function isVictory(){
