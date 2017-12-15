@@ -1,5 +1,12 @@
 require('./globals');
 
+var reporters = require('jasmine-reporters');
+var junitReporter = new reporters.JUnitXmlReporter({
+    savePath: 'testReports',
+    consolidateAll: false
+});
+jasmine.getEnv().addReporter(junitReporter);
+
 
 let JasmineConsoleReporter = require('jasmine-console-reporter');
 let consoleReporter = new JasmineConsoleReporter({
