@@ -35,8 +35,14 @@ describe("Tic Cell", function () {
     });
 
 
-    it('should render without error', function () {
-
+    fit('should render without error', function () {
+        eventRouter.routeMessage({
+                                    gameId: "thegame",
+                                    type: "MovePlaced",
+                                    move: {xy:{ x: 1, y: 2 }, side: 'X'},
+                                    commandId: '1'
+                                });
+        console.log(component);
     });
 
     it('should do more stuff', function () {
