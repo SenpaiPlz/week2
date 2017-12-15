@@ -13,7 +13,7 @@ node {
             echo 'Running unit tests...'
             // A single run of the unit tests
             sh 'npm run test:nowatch'
-            junit './testReports/*.xml'
+            junit '**/testReports/*.xml'
         }
         stage('Build and push to docker'){
             echo 'Building and pushing to docker...'
