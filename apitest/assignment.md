@@ -4,6 +4,7 @@
 It has to do with the usage of function chaining, event queueing and how node handles blocking. In the case of the user object, the user object will always return itself after a function is ran in order to allow function chaining. The user object will also always setup the expected events on a waitingFor stack, this makes the user object *block* when waiting for events.
 
 Lets take a look at a part of a run through this code to get a better view of what's happening.
+
 -userA calls the expectGameCreated() function that adds the GameCreated to its waitingfor stack
 -userA then calls the createGame() function which issues the CreateGame event to the server.
     - Note at this point user A will "async block" while waiting for the server to issue the GameCreated.
