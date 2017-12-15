@@ -31,6 +31,7 @@ node {
         }
         stage('Test') {
             echo 'Testing..'
+            sh 'npm run startserver && npm run apitest'
             // will be used later for acceptance testing
         }
         stage('Deploy') {
