@@ -1,5 +1,4 @@
 node {
-    stages {
         // get the vars from the scm checkout
         // used to reference GIT_COMMIT
         def scmVars = checkout scm
@@ -39,7 +38,6 @@ node {
                 // sh "./provision-new-environment.sh ${scmVars.GIT_COMMIT}"
             }
         }
-    }
     
     post {
         always {
