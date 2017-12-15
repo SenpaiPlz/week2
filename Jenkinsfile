@@ -39,7 +39,7 @@ node {
             dir('./provisioning')
             {
                 // use the ./provision-new-environment.sh to deploy the image
-                // sh "./provision-new-environment.sh ${scmVars.GIT_COMMIT}"
+                sh "./provision-new-environment.sh ${scmVars.GIT_COMMIT}"
             }
         }
 }
