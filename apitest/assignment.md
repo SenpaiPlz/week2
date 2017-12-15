@@ -5,10 +5,10 @@ It has to do with the usage of function chaining, event queueing and how node ha
 
 Lets take a look at a part of a run through this code to get a better view of what's happening.
 
--userA calls the expectGameCreated() function that adds the GameCreated to its waitingfor stack
--userA then calls the createGame() function which issues the CreateGame event to the server.
+- userA calls the expectGameCreated() function that adds the GameCreated to its waitingfor stack
+- userA then calls the createGame() function which issues the CreateGame event to the server.
     - Note at this point user A will "async block" while waiting for the server to issue the GameCreated.
--userA will pop the GameCreated event from its waitingFor stack and un-block once the server has issued the GameCreated event. This in turn will make the userA object return itself and trigger the chained then() function call.
+- userA will pop the GameCreated event from its waitingFor stack and un-block once the server has issued the GameCreated event. This in turn will make the userA object return itself and trigger the chained then() function call.
 
 By now it should be clear that by using callbacks, event queueing and function chaining, that this code can play both sides.
 
