@@ -7,6 +7,7 @@ node {
             // Define the node tool and add the env.PATH
             def node = tool name: 'Node', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
             env.PATH = "${node}/bin:${env.PATH}"
+            sh 'npm install'
         }
         stage('Unit Test'){
             echo 'Running unit tests...'
